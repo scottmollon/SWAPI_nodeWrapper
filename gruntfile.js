@@ -19,14 +19,14 @@ module.exports = function(grunt) {
                 tutorials: 'docfiles/tutorials'
             }
         }
-    },
+    },*/
     uglify: {
         my_target: {
             files: {
-                'dist/bimassure.min.js': ['BIMAssure.js']
+                'dist/sw_api.min.js': ['SW_API.js']
             }
         }
-    },*/
+    },
     jasmine_node: {
         options: {
           forceExit: true,
@@ -44,20 +44,20 @@ module.exports = function(grunt) {
                 {src: ['docfiles/BALogo.png'], dest: 'dist/docs/images/BALogo.png'}
             ],
         }
-      },
-    clean: ['dist']*/
+      },*/
+    clean: ['dist']
   });
 
   /*grunt.loadNpmTasks('grunt-contrib-jshint');
-  grunt.loadNpmTasks('grunt-jsdoc');
-  grunt.loadNpmTasks('grunt-contrib-uglify');*/
+  grunt.loadNpmTasks('grunt-jsdoc');*/
+  grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-jasmine-node');
-  /*grunt.loadNpmTasks('grunt-contrib-copy');
+  //grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-clean');
 
-  grunt.registerTask('default', ['jshint', 'jasmine_node']);
-  grunt.registerTask('build', ['clean','jsdoc', 'uglify', 'copy']);
-  grunt.registerTask('test', ['jshint', 'jasmine_node']);*/
+  //grunt.registerTask('default', ['jshint', 'jasmine_node']);
+  grunt.registerTask('build', ['clean', 'uglify',]);
+  //grunt.registerTask('test', ['jshint', 'jasmine_node']);
   grunt.registerTask('test', ['jasmine_node']);
 
 };
