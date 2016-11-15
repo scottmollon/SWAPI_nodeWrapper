@@ -31,14 +31,14 @@ describe("get a specific resource by id", function() {
 describe("get a specific resource by search", function() {
    
     it("should find Bobba Fett by search", function(done) {
-       SWAPI.getResourceBySearch('people', 'fett').then(function(response) {
+       SWAPI.getResourcesBySearch('people', 'fett').then(function(response) {
           expect(response.results.length).toEqual(2);
           done();
        });
     });
     
     it("should find Twi'lek by search", function(done) {
-        SWAPI.getResourceBySearch('species', 'twi').then(function(response) {
+        SWAPI.getResourcesBySearch('species', 'twi').then(function(response) {
           expect(response.results.length).toBe(1);
           done();
        });

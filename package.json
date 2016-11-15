@@ -2,7 +2,9 @@
   "name": "SWAPI_nodeWrapper",
   "version": "1.0.0",
   "main": "SW_API.js",
-  "keywords": ["star wars"],
+  "keywords": [
+    "star wars"
+  ],
   "author": "scottmollon",
   "contributors": [],
   "dependencies": {
@@ -11,6 +13,7 @@
   },
   "devDependencies": {
     "grunt": "^1.0.1",
+    "grunt-contrib-jshint": "^1.0.0",
     "grunt-contrib-uglify": "^2.0.0",
     "grunt-jasmine-node": "^0.3.1",
     "grunt-jsdoc": "^2.1.0"

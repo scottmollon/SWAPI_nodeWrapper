@@ -1,15 +1,15 @@
 module.exports = function(grunt) {
 
   grunt.initConfig({
-    /*jshint: {
-      files: ['bimassure.js'],
+    jshint: {
+      files: ['SW_API.js'],
       options: {
         globals: {
           jQuery: false
         }
       }
     },
-    jsdoc : {
+    /*jsdoc : {
         dist : {
             src: ['bimassure.js'],
             options: {
@@ -40,23 +40,23 @@ module.exports = function(grunt) {
     /*copy: {
         main: {
             files: [
-                {src: ['package.json'], dest: 'dist/'},
-                {src: ['docfiles/BALogo.png'], dest: 'dist/docs/images/BALogo.png'}
+                {src: [''], dest: 'dist/'},
+                {src: [''], dest: 'dist/'}
             ],
         }
       },*/
     clean: ['dist']
   });
 
-  /*grunt.loadNpmTasks('grunt-contrib-jshint');
-  grunt.loadNpmTasks('grunt-jsdoc');*/
+  grunt.loadNpmTasks('grunt-contrib-jshint');
+  /*grunt.loadNpmTasks('grunt-jsdoc');*/
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-jasmine-node');
   //grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-clean');
 
   //grunt.registerTask('default', ['jshint', 'jasmine_node']);
-  grunt.registerTask('build', ['clean', 'uglify',]);
+  grunt.registerTask('build', ['jshint', 'clean', 'uglify',]);
   //grunt.registerTask('test', ['jshint', 'jasmine_node']);
   grunt.registerTask('test', ['jasmine_node']);
 

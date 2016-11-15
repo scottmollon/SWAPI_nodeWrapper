@@ -17,7 +17,7 @@ var SW_API = function() {
     var request = require('request');
     var q = require('q');
     
-    const BASEURL = 'http://swapi.co/api/';
+    var BASEURL = 'http://swapi.co/api/';
     var allResourceList = null;
     
     var send_request = function(url, data, callback){
@@ -127,7 +127,7 @@ var SW_API = function() {
  
             return deferred.promise;
         },
-        getResourceBySearch: function(resource, searchString, page) {
+        getResourcesBySearch: function(resource, searchString, page) {
             var deferred = q.defer();
             
             page = page || 1;
