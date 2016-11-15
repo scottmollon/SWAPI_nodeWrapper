@@ -1,0 +1,16 @@
+{
+  "name": "SWAPI_nodeWrapper",
+  "version": "1.0.0",
+  "main": "SWAPI.js",
+  "keywords": [],
+  "author": "scottmollon",
+  "contributors": [],
+  "dependencies": {
+    "q": "^1.4.1",
+    "request": "^2.78.0"
+  },
+  "devDependencies": {
+    "grunt": "^1.0.1",
+    "grunt-jasmine-node": "^0.3.1"
+  }
+}
