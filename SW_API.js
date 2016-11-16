@@ -1,5 +1,8 @@
 /*
- * SWAPI_nodeWrapper was written by Scott Mollon and released under an MIT license.
+ * SWAPI_nodeWrapper was written by Scott Mollon and released under an MIT license. It is a nodejs interface for SWAPI (Star Wars API).
+ * 
+ * @license
+ * The MIT License (MIT)
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), 
  * to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, 
@@ -17,9 +20,20 @@ var SW_API = function() {
     var request = require('request');
     var q = require('q');
     
-    var BASEURL = 'http://swapi.co/api/';
+    var BASEURL = 'http://swapi.co/api/';   //Base url for the API
+    
+    // A list of the API resources which is downloaded from the API itself.
+    // This list includes what resources are supported and URI for each
     var allResourceList = null;
     
+    /**
+     * @method SW_API.send_request
+     * @private
+     * @description Handles sending the GET requests to the api
+     * @param url - The url to which to send the request
+     * @param data - The query parameters for the request
+     * @param callback - The callback function for the request is resolved
+     */
     var send_request = function(url, data, callback){
         
         data = data || {};
@@ -33,6 +47,11 @@ var SW_API = function() {
         request(options, callback);
     };
     
+    /**
+    * @method SW_API.getAllResources
+    * @private
+    * @description Gets the supported resources from the API
+    */
     var getAllResources = function() {
         var deferred = q.defer();
 
@@ -41,7 +60,10 @@ var SW_API = function() {
                 deferred.reject(error);
             }
             else if (response.statusCode === 200) {
+                
+                //save resource info privately
                 allResourceList = JSON.parse(body);
+                
                 deferred.resolve(true);
             }
             else {
@@ -54,6 +76,12 @@ var SW_API = function() {
         return deferred.promise;
     };
     
+    /**
+    * @method SW_API.checkAllResources
+    * @private
+    * @description Checks to see if the resource information has been downloaded from 
+    * the API, and if not downloads it.
+    */
     var checkAllResources = function() {
         var deferred = q.defer();
 
@@ -69,7 +97,18 @@ var SW_API = function() {
         return deferred.promise;
     };
     
+    /**
+     * SW_API
+     * @class SW_API
+     * @version 1.0.0
+     * @description A javascript node js interface for the SWAPI (Star Wars API).
+     */
     return {
+        /**
+         * @method SW_API.getResourceTypes
+         * @description Returns a string array of the supported resources such as people, vehicles, planets, etc...
+         * @returns {'string[]'} A promise which will resolve to a string array
+         */
         getResourceTypes: function() {
             var deferred = q.defer();
             
@@ -79,6 +118,33 @@ var SW_API = function() {
  
             return deferred.promise;
         },
+        /**
+         * @method SW_API.getAllResourcesByType
+         * @description Returns a paged list of all items of a specific resource type. The resource type must be one
+         * of the types the API supports. If no page is provided when called the first page of results is returned.
+         * @param {string} resource - The type of resource for which to retrieve items such as people, planets, vehicles.
+         * @param {int} page - The page of results to retrieve.
+         * @returns {json} - A promise which will resolve a json response with a results list and information about number of and current page.
+         * @example //Get first page of results
+         * var SWAPI = require('SW_API');
+         * SWAPI.getAllResourcesByType('people').then(function(pagedResult){
+         *   //do something with pagedResults of people
+         * });
+         * @example //Request a page of results
+         * var SWAPI = require('SW_API');
+         * SWAPI.getAllResourcesByType('people', 2).then(function(pagedResult){
+         *   //do something with pagedResults of people
+         * });
+         * @example //Response
+         * {
+         *  'totalPages': 3,
+         *  'currentPage': 2,
+         *  'count': 26,
+         *  'next': 'http://...../?page=3',
+         *  'previous': 'http://...../?page=1',
+         *  'results': []
+         * }
+         */
         getAllResourcesByType: function(resource, page) {
             var deferred = q.defer();
             
@@ -106,6 +172,18 @@ var SW_API = function() {
  
             return deferred.promise;
         },
+        /**
+         * @method SW_API.getResourceById
+         * @description Returns a single item of a given resource type found by it's id.
+         *  @param {string} resource - The type of resource for which to retrieve the item such as people, planets, vehicles.
+         *  @param {int} id - The id of the specific item
+         *  @returns {json} - A promise which will resolve to the json object describing the item
+         *  @example //Retrieve a vehicle by id of 10
+         *  var SWAPI = require('SW_API');
+         *  SWAPI.getResourceById('vehicle', 10).then(function(vehicle){
+         *   //do something with vehicle
+         * });
+         */
         getResourceById: function(resource, id) {
             var deferred = q.defer();
             
@@ -127,6 +205,34 @@ var SW_API = function() {
  
             return deferred.promise;
         },
+        /**
+         * @method SW_API.getResourcesBySearch
+         * @description Returns a paged list of all items of a specific resource type matching a search string. The resource type must be one
+         * of the types the API supports. If no page is provided when called the first page of results is returned.
+         * @param {string} resource - the type of resource for which to retrieve items such as people, planets, vehicles.
+         * @param {string} searchString - The value to use when searching items.
+         * @param {int} page - The page of results to retrieve.
+         * @returns {json} - A promise which will resolve a json response with a results list and information about number of and current page.
+         * @example //Get first page of results
+         * var SWAPI = require('SW_API');
+         * SWAPI.getResourcesBySearch('people', 'Fett').then(function(pagedResult){
+         *   //do something with pagedResults of people matchign Fett
+         * });
+         * @example //Request a page of results
+         * var SWAPI = require('SW_API');
+         * SWAPI.getAllResourcesByType('people', 'Fett', 2).then(function(pagedResult){
+         *   //do something with pagedResults of people matchign Fett
+         * });
+         * @example //Response
+         * {
+         *  'totalPages': 3,
+         *  'currentPage': 2,
+         *  'count': 26,
+         *  'next': 'http://...../?search=Fett&page=3',
+         *  'previous': 'http://...../?search=Fett&page=1',
+         *  'results': []
+         * }
+         */
         getResourcesBySearch: function(resource, searchString, page) {
             var deferred = q.defer();
             
