@@ -15,8 +15,7 @@ module.exports = function(grunt) {
             options: {
                 destination: 'docs',
                 template: 'docfiles/template/minami-master',
-                //readme: 'Readme.md',
-                //tutorials: 'docfiles/tutorials'
+                readme: 'Readme.md',
             }
         }
     },
@@ -60,7 +59,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-clean');
 
   grunt.registerTask('default', ['jshint', 'jasmine_node']);
-  grunt.registerTask('build', ['jshint', 'clean', 'uglify',]);
+  grunt.registerTask('build', ['jshint', 'clean', 'uglify', 'docs']);
   grunt.registerTask('test', ['jshint', 'jasmine_node']);
   grunt.registerTask('docs', ['jsdoc']);
 
