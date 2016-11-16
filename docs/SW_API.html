@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>SW_API - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="SW_API.html">SW_API</a><ul class='methods'><li data-type='method'><a href="SW_API.html#.getAllResourcesByType">getAllResourcesByType</a></li><li data-type='method'><a href="SW_API.html#.getResourceById">getResourceById</a></li><li data-type='method'><a href="SW_API.html#.getResourcesBySearch">getResourcesBySearch</a></li><li data-type='method'><a href="SW_API.html#.getResourceTypes">getResourceTypes</a></li></ul></li></ul>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">SW_API</h1>
+    
+
+    
+
+
+
+
+<section>
+
+<header>
+    
+        <h2>
+        SW_API
+        </h2>
+        
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+        
+
+    
+
+    <h4 class="name" id="SW_API"><span class="type-signature"></span>new SW_API<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    A javascript node js interface for the SWAPI (Star Wars API).
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-version">Version:</dt>
+    <dd class="tag-version"><ul class="dummy"><li>1.0.0</li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="SW_API.js.html">SW_API.js</a>, <a href="SW_API.js.html#line100">line 100</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    </div>
+
+    
+
+    
+
+    
+
+     
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        
+            
+
+    
+
+    <h4 class="name" id=".getAllResourcesByType"><span class="type-signature">(static) </span>getAllResourcesByType<span class="signature">(resource, page)</span><span class="type-signature"> &rarr; {json}</span></h4>
+
+    
+
+
+
+<div class="description">
+    Returns a paged list of all items of a specific resource type. The resource type must be one
+of the types the API supports. If no page is provided when called the first page of results is returned.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>resource</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The type of resource for which to retrieve items such as people, planets, vehicles.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>page</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">int</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The page of results to retrieve.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="SW_API.js.html">SW_API.js</a>, <a href="SW_API.js.html#line121">line 121</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    - A promise which will resolve a json response with a results list and information about number of and current page.
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">json</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+    <h5>Examples</h5>
+    
+    <pre class="prettyprint"><code>//Get first page of results
+var SWAPI = require('SW_API');
+SWAPI.getAllResourcesByType('people').then(function(pagedResult){
+  //do something with pagedResults of people
+});</code></pre>
+
+    <pre class="prettyprint"><code>//Request a page of results
+var SWAPI = require('SW_API');
+SWAPI.getAllResourcesByType('people', 2).then(function(pagedResult){
+  //do something with pagedResults of people
+});</code></pre>
+
+    <pre class="prettyprint"><code>//Response
+{
+ 'totalPages': 3,
+ 'currentPage': 2,
+ 'count': 26,
+ 'next': 'http://...../?page=3',
+ 'previous': 'http://...../?page=1',
+ 'results': []
+}</code></pre>
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".getResourceById"><span class="type-signature">(static) </span>getResourceById<span class="signature">(resource, id)</span><span class="type-signature"> &rarr; {json}</span></h4>
+
+    
+
+
+
+<div class="description">
+    Returns a single item of a given resource type found by it's id.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>resource</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The type of resource for which to retrieve the item such as people, planets, vehicles.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>id</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">int</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The id of the specific item</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="SW_API.js.html">SW_API.js</a>, <a href="SW_API.js.html#line175">line 175</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    - A promise which will resolve to the json object describing the item
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">json</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>//Retrieve a vehicle by id of 10
+ var SWAPI = require('SW_API');
+ SWAPI.getResourceById('vehicle', 10).then(function(vehicle){
+  //do something with vehicle
+});</code></pre>
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".getResourcesBySearch"><span class="type-signature">(static) </span>getResourcesBySearch<span class="signature">(resource, searchString, page)</span><span class="type-signature"> &rarr; {json}</span></h4>
+
+    
+
+
+
+<div class="description">
+    Returns a paged list of all items of a specific resource type matching a search string. The resource type must be one
+of the types the API supports. If no page is provided when called the first page of results is returned.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>resource</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the type of resource for which to retrieve items such as people, planets, vehicles.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>searchString</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The value to use when searching items.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>page</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">int</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The page of results to retrieve.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="SW_API.js.html">SW_API.js</a>, <a href="SW_API.js.html#line208">line 208</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    - A promise which will resolve a json response with a results list and information about number of and current page.
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">json</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+    <h5>Examples</h5>
+    
+    <pre class="prettyprint"><code>//Get first page of results
+var SWAPI = require('SW_API');
+SWAPI.getResourcesBySearch('people', 'Fett').then(function(pagedResult){
+  //do something with pagedResults of people matchign Fett
+});</code></pre>
+
+    <pre class="prettyprint"><code>//Request a page of results
+var SWAPI = require('SW_API');
+SWAPI.getAllResourcesByType('people', 'Fett', 2).then(function(pagedResult){
+  //do something with pagedResults of people matchign Fett
+});</code></pre>
+
+    <pre class="prettyprint"><code>//Response
+{
+ 'totalPages': 3,
+ 'currentPage': 2,
+ 'count': 26,
+ 'next': 'http://...../?search=Fett&amp;page=3',
+ 'previous': 'http://...../?search=Fett&amp;page=1',
+ 'results': []
+}</code></pre>
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".getResourceTypes"><span class="type-signature">(static) </span>getResourceTypes<span class="signature">()</span><span class="type-signature"> &rarr; {'string[]'}</span></h4>
+
+    
+
+
+
+<div class="description">
+    Returns a string array of the supported resources such as people, vehicles, planets, etc...
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="SW_API.js.html">SW_API.js</a>, <a href="SW_API.js.html#line107">line 107</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    A promise which will resolve to a string array
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">'string[]'</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Wed Nov 16 2016 10:56:48 GMT-0500 (Eastern Standard Time) using the Minami theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>

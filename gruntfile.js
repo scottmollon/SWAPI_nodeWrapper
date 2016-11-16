@@ -48,7 +48,7 @@ module.exports = function(grunt) {
             ],
         }
       },*/
-    clean: ['dist', 'docs']
+    clean: ['dist']
   });
 
   
@@ -62,7 +62,7 @@ module.exports = function(grunt) {
   grunt.registerTask('default', ['jshint', 'jasmine_node']);
   grunt.registerTask('build', ['jshint', 'clean', 'uglify',]);
   grunt.registerTask('test', ['jshint', 'jasmine_node']);
-  grunt.registerTask('docs', ['clean', 'jsdoc']);
+  grunt.registerTask('docs', ['jsdoc']);
 
 
 };
