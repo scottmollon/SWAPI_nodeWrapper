@@ -72,3 +72,46 @@ describe("get all resources of type", function() {
     });
 });
 
+describe("get a resource by url", function() {
+    
+    it("should get Millennium Falcom by URL", function(done) {
+        var url = 'http://swapi.co/api/starships/10';
+        SWAPI.getResourceByUrl(url).then(function(starship) {
+            expect(starship.name).toEqual('Millennium Falcon');
+            done();
+        });
+    });
+    
+    it("should get all vehicles by URL and find first page", function(done) {
+        var url = 'http://swapi.co/api/vehicles';
+        SWAPI.getResourceByUrl(url).then(function(results) {
+            expect(results.page).toEqual(1);
+            done();
+        });
+    });
+    
+    it("should get all vehicles by URL and find fourth page", function(done) {
+        var url = 'http://swapi.co/api/vehicles/?page=4';
+        SWAPI.getResourceByUrl(url).then(function(results) {
+            expect(results.page).toEqual(4);
+            done();
+        });
+    });
+    
+    it("should search vehicles by URL for s", function(done) {
+        var url = 'http://swapi.co/api/vehicles/?search=s';
+        SWAPI.getResourceByUrl(url).then(function(results) {
+            expect(results.page).toEqual(1);
+            done();
+        });
+    });
+    
+    it("should search vehicles by URL for s and fourth page", function(done) {
+        var url = 'http://swapi.co/api/vehicles/?search=s&page=4';
+        SWAPI.getResourceByUrl(url).then(function(results) {
+            expect(results.page).toEqual(4);
+            done();
+        });
+    });
+});
+

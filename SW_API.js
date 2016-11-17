@@ -259,6 +259,68 @@ var SW_API = function() {
             });
  
             return deferred.promise;
+        },
+        /**
+         * @method SW_API.getResourceByURL
+         * @description Returns the raw SWAPI response. Use this when retrieving related resources from an item such as homeworld, or films.
+         * This can be used to get a single resource, a list of items, or if given a query string a search or a page of items.
+         * @param {string} url - the url of the resource to retrieve.
+         * @returns {json} - A promise which will resolve the raw json response from the SWAPI.
+         * @example //Get first page of results
+         * var SWAPI = require('SW_API');
+         * SWAPI.getResourcesByUrl('http://swapi.co/api/films/1/').then(function(film){
+         *   //do something with film
+         * });
+         */
+        getResourceByUrl: function(url) {
+            var deferred = q.defer();
+            
+            var pagedCallback = function(error, response, body){
+                if (error){
+                    deferred.reject(error);
+                }
+                else if (response.statusCode === 200) {
+                    responseBody = JSON.parse(body);
+                    
+                    if (responseBody.next || responseBody.previous)
+                    {
+                        responseBody.totalPages = Math.ceil(responseBody.count / 10);
+                        
+                        //get the current page number from either next or previous
+                        var query;
+                        if (responseBody.next)
+                            query = responseBody.next.split('?')[1];
+                        else
+                            query = responseBody.previous.split('?')[1];
+                        
+                        var pageindex = query.indexOf('page');
+                        var equalindex = query.indexOf('=', pageindex);
+                        var ampindex = query.indexOf('&', equalindex);
+                        
+                        var page;
+                        if (ampindex !== -1)
+                            page = query.substring(equalindex+1, ampindex);
+                        else
+                            page = query.substring(equalindex+1);
+                        
+                        if (responseBody.next)
+                            responseBody.page = parseInt(page)-1;
+                        else
+                            responseBody.page = parseInt(page)+1;
+                    }
+                    deferred.resolve(responseBody);
+                }
+                else
+                {
+                    deferred.reject(JSON.parse(body));
+                }
+            };
+            
+            checkAllResources().then(function(){
+                send_request(url, {}, pagedCallback);
+            });
+ 
+            return deferred.promise;
         }
     };
 };

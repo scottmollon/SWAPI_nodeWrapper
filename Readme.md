@@ -9,6 +9,7 @@ things quite the way I wanted to.
 * getResourceById - Gets a single resource of a given type by ID. Ex. gets a specific person by ID.
 * getAllResourcesByType - Gets a paged list of all resources of a given type. Ex. All planets.
 * getResourcesBySearch - Gets a paged list of all resources of a given type that match a search string.
+* getResourceByUrl - Gets a single or paged resource from an entire SWAPI URL.
 
 ## Installation
 
@@ -47,8 +48,4 @@ SWAPI.getResourcesBySearch('people', 'fett').then(function(response) {
 
 ## A Work In Progress
 
-I don't have a good solution for getting resource relationships as of now. I wish the SWAPI gave back just the item ids, and not full
-URIs. Then I could just reuse the getResourceById() method to get related items. Maybe just adding a getResourceByUrl() method is good enough...
-
-
-Also would like to check the resource names sent to the get methods and reject if they are not one of the valid resource names.
+Would like to check the resource names sent to the get methods and reject if they are not one of the valid resource names.
